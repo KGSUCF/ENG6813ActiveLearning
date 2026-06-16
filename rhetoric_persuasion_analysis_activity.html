@@ -1,0 +1,260 @@
+
+<h2 class="sr-only">Interactive rhetoric and persuasion analysis activity. Identify techniques in a mock persuasive message about learning guitar.</h2>
+
+<style>
+.aw{padding:1.5rem 0}
+.eyebrow{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);margin-bottom:.5rem;font-family:var(--font-mono)}
+.card{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
+.prog-track{height:4px;background:var(--color-border-tertiary);border-radius:2px;overflow:hidden;margin-bottom:.4rem}
+.prog-fill{height:100%;background:#534AB7;border-radius:2px;transition:width .4s ease;width:0%}
+.msg-text{font-family:var(--font-serif);font-size:15px;line-height:1.85;color:var(--color-text-primary)}
+.seg{display:inline;padding:1px 0;border-radius:3px;transition:background .2s}
+.sbadge{display:inline-flex;align-items:center;justify-content:center;width:15px;height:15px;border-radius:50%;font-size:9px;font-family:var(--font-mono);background:#D3D1C7;color:#444441;vertical-align:middle;margin:0 1px;transition:all .2s;flex-shrink:0}
+.seg.sa{background:#FAEEDA}.seg.sa .sbadge{background:#534AB7;color:#EEEDFE}
+.seg.sc{background:#EAF3DE}.seg.sc .sbadge{background:#3B6D11;color:#EAF3DE}
+.seg.sp{background:#FAF0DA}.seg.sp .sbadge{background:#BA7517;color:#FAEEDA}
+.seg.sd{background:#E6F1FB}.seg.sd .sbadge{background:#185FA5;color:#E6F1FB}
+.qquote{font-family:var(--font-serif);font-size:15px;font-style:italic;border-left:2px solid #534AB7;border-radius:0;padding:.6rem .875rem;background:var(--color-background-secondary);margin-bottom:1rem;color:var(--color-text-primary);line-height:1.75}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:1rem}
+.obtn{display:flex;align-items:center;gap:8px;padding:.5rem .75rem;border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);text-align:left;transition:all .12s;line-height:1.4;width:100%}
+.obtn:hover:not(:disabled){border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.obtn.osel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500}
+.obtn.obest{border-color:#3B6D11;background:#EAF3DE;color:#27500A;font-weight:500}
+.obtn.ook{border-color:#BA7517;background:#FAEEDA;color:#633806}
+.obtn.omiss{opacity:.4}
+.odot{width:14px;height:14px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px}
+.fb{font-size:13px;line-height:1.7;border-radius:var(--border-radius-md);padding:.75rem 1rem;margin-bottom:1rem;display:none}
+.fb.vis{display:block}
+.fb.fb-best{background:#EAF3DE;border-left:2px solid #3B6D11;border-radius:0}
+.fb.fb-ok{background:#FAF0DA;border-left:2px solid #BA7517;border-radius:0}
+.fb.fb-info{background:#E6F1FB;border-left:2px solid #185FA5;border-radius:0}
+.fb-t{font-weight:500;margin-bottom:.35rem;font-size:13px;color:var(--color-text-primary)}
+.fb-b{color:var(--color-text-primary)}
+.fb-n{margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary)}
+.pill-row{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pill{font-size:11px;padding:2px 8px;border-radius:20px;font-family:var(--font-mono)}
+.pill-b{background:#EAF3DE;color:#27500A;border:.5px solid #639922}
+.pill-o{background:#FAF0DA;color:#633806;border:.5px solid #BA7517}
+.score-n{font-size:48px;font-weight:500;color:#534AB7;font-family:var(--font-serif);line-height:1}
+.rq{margin-bottom:1.25rem}
+.rq label{display:block;font-size:13px;color:var(--color-text-primary);margin-bottom:.4rem;line-height:1.6}
+.rqn{font-family:var(--font-mono);font-size:12px;color:#534AB7}
+.rq textarea{width:100%;min-height:72px;resize:vertical;padding:.5rem .75rem;font-size:13px;line-height:1.6}
+.rq textarea:focus{outline:none;box-shadow:0 0 0 2px #EEEDFE}
+.act-row{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.leg{display:flex;flex-wrap:wrap;gap:10px;align-items:center;font-size:12px;color:var(--color-text-tertiary)}
+.li{display:flex;align-items:center;gap:5px}
+.ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+@media(max-width:520px){.ogrid{grid-template-columns:1fr}}
+</style>
+
+<div class="aw">
+
+<div style="margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:.5px solid var(--color-border-tertiary)">
+  <div class="eyebrow">Rhetoric &amp; AI literacy — classroom activity</div>
+  <h2 style="font-size:20px;font-weight:500;margin:0 0 .4rem;color:var(--color-text-primary)">Reading between the lines</h2>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin:0;line-height:1.65">Analyze a mock persuasive message and identify the technique at work in each highlighted segment. Read carefully — not every sentence is fallacious or manipulative. Part of the task is distinguishing the fair from the flawed.</p>
+</div>
+
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:1.25rem">
+  <div class="prog-track" style="flex:1"><div class="prog-fill" id="pf"></div></div>
+  <span style="font-size:12px;font-family:var(--font-mono);color:var(--color-text-tertiary);white-space:nowrap" id="pl">0 / 12</span>
+  <span style="font-size:12px;font-family:var(--font-mono);background:#EEEDFE;color:#3C3489;padding:2px 8px;border-radius:20px;white-space:nowrap" id="sl">Score: 0</span>
+</div>
+
+<div class="card" style="margin-bottom:.75rem">
+  <div class="eyebrow">Mock persuasive message — topic: should everyone learn guitar?</div>
+  <div class="msg-text" id="mt"></div>
+</div>
+
+<div style="margin-bottom:1.25rem;padding:.6rem 1rem;background:var(--color-background-secondary);border-radius:var(--border-radius-md);border:.5px solid var(--color-border-tertiary)">
+  <div class="leg">
+    <span style="font-weight:500;font-size:12px;color:var(--color-text-secondary)">Segment colors:</span>
+    <span class="li"><span class="ld" style="background:#FAEEDA;border:.5px solid #E6960C"></span>Active</span>
+    <span class="li"><span class="ld" style="background:#EAF3DE;border:.5px solid #639922"></span>Best match</span>
+    <span class="li"><span class="ld" style="background:#FAF0DA;border:.5px solid #BA7517"></span>Also reasonable</span>
+    <span class="li"><span class="ld" style="background:#E6F1FB;border:.5px solid #378ADD"></span>Answered</span>
+  </div>
+</div>
+
+<div class="card" id="qcard">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem">
+    <div class="eyebrow" style="margin:0" id="qey">Segment 1 of 12</div>
+  </div>
+  <div class="qquote" id="qq"></div>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">What best describes what this passage is doing? Select one, then check your thinking.</p>
+  <div class="ogrid" id="og"></div>
+  <div class="fb" id="fb">
+    <div class="fb-t" id="ft"></div>
+    <div class="fb-b" id="fb2"></div>
+    <div class="fb-n" id="fn"></div>
+  </div>
+  <div class="act-row">
+    <div class="pill-row" id="pr" style="display:none"></div>
+    <button id="ab" onclick="ha()" disabled style="margin-left:auto">Check answer</button>
+  </div>
+</div>
+
+<div class="card" id="ss" style="display:none;text-align:center">
+  <div class="eyebrow" style="text-align:center">Activity complete</div>
+  <div style="display:flex;align-items:baseline;justify-content:center;gap:6px;margin:.75rem 0 .5rem">
+    <div class="score-n" id="fsn">0</div>
+    <div style="font-size:14px;color:var(--color-text-tertiary)">/ 12</div>
+  </div>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin:0" id="sm"></p>
+</div>
+
+<div class="card" id="rs" style="display:none;margin-top:1rem">
+  <div class="eyebrow">Reflection questions</div>
+  <h3 style="font-size:16px;font-weight:500;margin:0 0 .35rem;color:var(--color-text-primary)">After the analysis</h3>
+  <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 1.25rem;line-height:1.65">Use these for written responses or class discussion. There are no single correct answers — the goal is to support your thinking with specific examples from the message.</p>
+  <div id="rqs"></div>
+</div>
+
+</div>
+
+<script>
+const D=[
+  {t:"Learning to play guitar can be a rewarding hobby.",b:["Reasonable claim"],ok:["Fair persuasive appeal"],o:["Reasonable claim","Fair persuasive appeal","Overgeneralization","Vague or unsupported evidence","Loaded language","Audience targeting"],fb:`This is one of the most careful sentences in the message. The word <strong>"can"</strong> does important work — it hedges the claim appropriately rather than overpromising. The sentence opens with something defensible and hard to dispute.<br><br><em>Fair persuasive appeal</em> is also a legitimate reading: the writer is framing guitar as attractive. But the modesty of "can be" keeps this closer to a plain defensible claim than a rhetorical pressure move. Compare this sentence to the stronger claims later in the message.`,n:`Word choice signals commitment. "Can be" vs. "will be" vs. "is" — each carries a very different level of certainty and honesty.`},
+  {t:"It gives beginners a concrete skill to practice, and many people enjoy being able to play songs for themselves or with friends.",b:["Fair persuasive appeal"],ok:["Reasonable claim"],o:["Reasonable claim","Fair persuasive appeal","Overgeneralization","Appeal to emotion","Vague or unsupported evidence","Audience targeting"],fb:`This sentence makes a fair appeal to genuine benefits — skill-building and social enjoyment — without overstating. The qualifier <strong>"many people"</strong> rather than "everyone" is responsible hedging. This is the kind of persuasion that is fair: it highlights real reasons the audience might value something without distorting reality.<br><br><em>Reasonable claim</em> also fits. The distinction between a reasonable claim and a fair persuasive appeal is sometimes about intent and context rather than content alone.`,n:`Not all persuasion is manipulation. A fair appeal offers genuine reasons and respects the audience's intelligence — it doesn't pressure or distort.`},
+  {t:"Because guitar is used in many musical styles, it can offer a flexible path into music.",b:["Reasonable claim"],ok:["Missing context"],o:["Reasonable claim","Fair persuasive appeal","Missing context","Overgeneralization","Vague or unsupported evidence","Loaded language"],fb:`This is factually accurate — guitar does appear across rock, folk, classical, jazz, country, and more. "Can offer" is appropriately hedged.<br><br>However, <em>missing context</em> is also a fair reading: the same flexibility argument could be made for piano, voice, or other instruments. The message implies guitar is uniquely well-suited without addressing alternatives — an omission that quietly inflates the case for guitar without saying anything technically false.`,n:`A claim can be technically true and still be missing important context. Sometimes the issue isn't what is said — it's what isn't.`},
+  {t:"In fact, millions of people around the world already play guitar — it is one of the most popular instruments on the planet.",b:["Appeal to popularity","Bandwagon fallacy"],ok:["Vague or unsupported evidence"],o:["Reasonable claim","Bandwagon fallacy","Appeal to popularity","Vague or unsupported evidence","Overgeneralization","Fair persuasive appeal"],fb:`The phrase <strong>"millions of people already play"</strong> uses popularity as evidence that you should play too — the core of both <em>appeal to popularity</em> and the <em>bandwagon fallacy</em>. The number of people doing something doesn't establish that it is valuable for any particular person.<br><br><em>Vague or unsupported evidence</em> also fits: "millions" is imprecise and no source is cited. Fallacious reasoning and weak evidence often appear together in the same sentence.`,n:`Appeal to popularity and bandwagon fallacy are closely related. The key question: does the fact that many people do something mean you should? What does popularity actually prove?`},
+  {t:"Every major musician, from rock stars to classical performers, has said that learning an instrument changed their life.",b:["Appeal to authority or admired examples"],ok:["Vague or unsupported evidence","Overgeneralization"],o:["Fair persuasive appeal","Appeal to authority or admired examples","Vague or unsupported evidence","Overgeneralization","Begging the question","Reasonable claim"],fb:`This sentence invokes admired musicians to validate the message — that's an <em>appeal to authority or admired examples</em>. Appeals to authority can be legitimate, but notice the problems here:<br><br>First, <strong>"every major musician"</strong> is an overgeneralization that's impossible to verify. Second, no specific person or quote is named — making this simultaneously an appeal to authority and <em>vague or unsupported evidence</em>.<br><br>Even if musicians said this, it would only tell us something was true for them — not necessarily for you.`,n:`Appeals to authority are only as strong as the authority is relevant, verified, and accurately represented. Unnamed universal claims — "everyone says..." — are warning signs.`},
+  {t:"people who never learn an instrument are missing out on one of the easiest ways to become more creative, disciplined, and interesting",b:["Overgeneralization"],ok:["Loaded language","Vague or unsupported evidence"],o:["Overgeneralization","Loaded language","Vague or unsupported evidence","Reasonable claim","Appeal to emotion","Missing context"],fb:`This sentence combines several problems. <em>Overgeneralization</em> is clearest: not everyone who skips an instrument "misses out" on creativity or discipline — people develop these qualities through countless other pursuits.<br><br>It also uses <em>loaded language</em>: calling guitar "one of the easiest ways" to become "more interesting" is unsupported and implies non-players are somehow less interesting. There's no evidence for any of it — making <em>vague or unsupported evidence</em> another valid label. Multiple techniques can operate in the same sentence.`,n:`Loaded language assigns value judgments through word choice. "Missing out" and "more interesting" shape how readers feel before they've evaluated the evidence.`},
+  {t:"Some people worry about the cost of lessons, but that has nothing to do with whether guitar is worth learning.",b:["Red herring"],ok:["Missing context"],o:["Red herring","Missing context","False dilemma","Overgeneralization","Reasonable claim","Loaded language"],fb:`This is a textbook <em>red herring</em>: the writer raises a concern (cost) only to declare it irrelevant. But cost is not irrelevant — it is a legitimate practical barrier for many people. By saying it's "nothing to do" with the question, the writer sidesteps a real objection without addressing it.<br><br><em>Missing context</em> also fits: the message ignores the real-world range of financial situations, time constraints, and access to instruction that shape whether guitar is a realistic option.`,n:`A red herring introduces or dismisses a point to distract from a legitimate issue. If a real concern is brushed aside as "not the point," ask: why isn't it?`},
+  {t:"You can either keep wasting your free time scrolling on your phone, or you can build a skill that will make you happier and more confident.",b:["False dilemma"],ok:["Loaded language","Audience targeting"],o:["False dilemma","Loaded language","Audience targeting","Appeal to emotion","False cause","Reasonable claim"],fb:`This sentence does several things at once. The <em>false dilemma</em> is the structural problem: the either/or framing pretends only two options exist — scrolling or guitar — when people have many ways to spend free time and build confidence.<br><br>The word <strong>"wasting"</strong> is <em>loaded language</em>: it assigns a negative judgment to screen time before the reader can evaluate it. And the whole sentence targets the intended audience — adults who feel guilty about screen time — making this a clear instance of <em>audience targeting through guilt and aspiration</em>. All three labels apply here.`,n:`False dilemmas force a choice between two options while ignoring all others. They often appear alongside loaded language — the "bad" option is labeled negatively so the choice feels obvious.`},
+  {t:"Once you start playing guitar, you will naturally develop the discipline to improve in every area of your life.",b:["False cause"],ok:["Slippery slope","Vague or unsupported evidence"],o:["False cause","Slippery slope","Vague or unsupported evidence","Fair persuasive appeal","Overgeneralization","Begging the question"],fb:`This is a <em>false cause</em> claim: that guitar playing will cause discipline to develop across every area of life. No evidence supports this causal chain, and the mechanism is never explained.<br><br>The escalation from "play guitar" to "improve in every area of your life" also carries a <em>slippery slope</em> quality — it assumes a chain of consequences that aren't established. <em>Vague or unsupported evidence</em> also applies, since "naturally develop" is a bold assertion with nothing behind it.`,n:`Causation vs. correlation: even if guitar players tend to be disciplined, that doesn't mean guitar caused the discipline. Both might stem from a third factor — personality, prior motivation, or environment.`},
+  {t:"After all, learning guitar is itself proof that you are someone who values self-improvement.",b:["Begging the question"],ok:["Audience targeting"],o:["Begging the question","Audience targeting","Appeal to emotion","Reasonable claim","False cause","Loaded language"],fb:`This is circular reasoning — <em>begging the question</em>: the sentence says learning guitar proves you value self-improvement. But this only makes sense if you already accept that guitar is a form of self-improvement. The argument assumes its own conclusion rather than establishing it.<br><br>It also functions as <em>audience targeting through aspiration</em>: the intended audience is told that starting guitar would confirm their identity as someone who values growth — flattering framing designed to create buy-in rather than provide an actual argument.`,n:`Begging the question doesn't mean "raising a question." It means using the conclusion as a premise — the argument assumes what it's supposed to prove.`},
+  {t:"Some people say they are too old or too busy, but that is usually just fear talking.",b:["Appeal to emotion"],ok:["Loaded language","Overgeneralization"],o:["Appeal to emotion","Loaded language","Overgeneralization","Red herring","Missing context","Reasonable claim"],fb:`This sentence uses <em>appeal to emotion</em> — specifically, it reframes legitimate practical concerns as emotional weakness. Calling real barriers "just fear" applies social pressure rather than addressing the issues logically, making readers feel ashamed for having those concerns.<br><br><strong>"Usually just fear"</strong> is also <em>loaded language</em>: it characterizes all objections as irrational without engaging with them. <em>Overgeneralization</em> applies too — some people genuinely have physical limitations, demanding schedules, or financial constraints. Lumping all objections under "fear" dismisses real diversity of circumstance.`,n:`Dismissing an objection is not the same as answering it. When a counterargument is brushed aside without engagement, ask: what is the writer avoiding?`},
+  {t:"Everyone should learn guitar before they regret not starting sooner.",b:["Audience targeting"],ok:["Overgeneralization","Appeal to emotion"],o:["Audience targeting","Overgeneralization","Appeal to emotion","Begging the question","Slippery slope","Reasonable claim"],fb:`This closing sentence is strategically constructed. The appeal to <strong>future regret</strong> is a form of <em>audience targeting</em>: it activates the specific anxiety of the intended audience — adults who feel they haven't developed meaningful creative habits — using fear of missing out to motivate action rather than evidence.<br><br><em>Overgeneralization</em> is stark: "everyone" is far too broad a claim for something as personal as a hobby. The sentence also edges into <em>begging the question</em> — it assumes guitar is worth learning in order to argue that you should learn it. The message ends where it began: asserting its conclusion rather than proving it.`,n:`Endings matter in persuasion. A strong close often uses emotional resonance rather than new evidence. Examine what emotion the final sentence tries to activate — and why.`}
+];
+
+const RQ=[
+  {n:"01",q:"What does this message want the audience to believe, feel, or do? What specific desires or anxieties is it targeting?"},
+  {n:"02",q:"Which parts of the message are reasonable or fair? What makes them different from the weaker parts?"},
+  {n:"03",q:"Which parts need more evidence? What kind of evidence would actually support those claims?"},
+  {n:"04",q:"Which parts use weak reasoning, emotional pressure, or fallacious logic? Name a specific technique for at least two of them."},
+  {n:"05",q:"What important context is missing from this message? What would a more complete picture look like?"},
+  {n:"06",q:"Is this message persuasive, manipulative, merely overstated, or some combination? Make a claim and support it with specific examples."},
+  {n:"07",q:"How did this activity affect the way you read or think about persuasive messages? What will you look for differently going forward?"}
+];
+
+let cur=0,sel=null,done=false,score=0,ans=new Array(D.length).fill(null);
+
+function renderMsg(){
+  document.getElementById('mt').innerHTML=D.map((s,i)=>
+    `<span class="seg" id="s${i}">${s.t}<span class="sbadge">${i+1}</span></span> `
+  ).join('');
+}
+
+function renderRefl(){
+  document.getElementById('rqs').innerHTML=RQ.map(q=>
+    `<div class="rq"><label><span class="rqn">${q.n} —</span> ${q.q}</label><textarea placeholder="Write your response here..."></textarea></div>`
+  ).join('');
+}
+
+function loadSeg(i){
+  cur=i;sel=null;done=false;
+  const s=D[i];
+  document.getElementById('qey').textContent=`Segment ${i+1} of ${D.length}`;
+  document.getElementById('qq').textContent=`"${s.t}"`;
+  document.querySelectorAll('.seg').forEach((el,idx)=>{
+    el.className='seg';
+    if(ans[idx]!==null){
+      if(D[idx].b.includes(ans[idx]))el.classList.add('sc');
+      else if(D[idx].ok.includes(ans[idx]))el.classList.add('sp');
+      else el.classList.add('sd');
+    }
+  });
+  document.getElementById(`s${i}`).className='seg sa';
+  const og=document.getElementById('og');
+  og.innerHTML='';
+  s.o.forEach(opt=>{
+    const b=document.createElement('button');
+    b.className='obtn';b.innerHTML=`<span class="odot"></span>${opt}`;
+    b.onclick=()=>pick(opt,b);og.appendChild(b);
+  });
+  const fb=document.getElementById('fb');
+  fb.className='fb';
+  document.getElementById('ft').innerHTML='';
+  document.getElementById('fb2').innerHTML='';
+  document.getElementById('fn').textContent='';
+  document.getElementById('pr').style.display='none';
+  document.getElementById('pr').innerHTML='';
+  const ab=document.getElementById('ab');
+  ab.textContent='Check answer';ab.disabled=true;
+  upProg();
+}
+
+function pick(v,btn){
+  if(done)return;
+  sel=v;
+  document.querySelectorAll('.obtn').forEach(b=>b.classList.remove('osel'));
+  btn.classList.add('osel');
+  document.getElementById('ab').disabled=false;
+}
+
+function ha(){if(!done)chkAns();else nxtSeg();}
+
+function chkAns(){
+  if(!sel)return;
+  done=true;ans[cur]=sel;
+  const s=D[cur];
+  const isBest=s.b.includes(sel),isOk=s.ok.includes(sel);
+  if(isBest)score+=1;else if(isOk)score+=.5;
+  upProg();
+  document.querySelectorAll('.obtn').forEach(b=>{
+    const lbl=b.textContent.trim();b.disabled=true;
+    if(s.b.includes(lbl)){b.className='obtn obest';b.querySelector('.odot').textContent='✓';}
+    else if(s.ok.includes(lbl)){b.className='obtn ook';b.querySelector('.odot').textContent='~';}
+    else if(lbl===sel&&!isBest&&!isOk)b.className='obtn omiss';
+  });
+  const fb=document.getElementById('fb');
+  const type=isBest?'fb-best':isOk?'fb-ok':'fb-info';
+  const title=isBest?'Spot on.':isOk?'That\'s defensible — here\'s the nuance:':`You chose "${sel}" — here's what's happening:`;
+  fb.className=`fb vis ${type}`;
+  document.getElementById('ft').textContent=title;
+  document.getElementById('fb2').innerHTML=s.fb;
+  document.getElementById('fn').textContent=s.n;
+  const pr=document.getElementById('pr');
+  pr.style.display='flex';
+  let ph='<span style="font-size:11px;color:var(--color-text-tertiary)">Best: </span>';
+  s.b.forEach(a=>ph+=`<span class="pill pill-b">${a}</span>`);
+  if(s.ok.length){ph+='<span style="font-size:11px;color:var(--color-text-tertiary);margin-left:6px">Also ok: </span>';s.ok.forEach(a=>ph+=`<span class="pill pill-o">${a}</span>`);}
+  pr.innerHTML=ph;
+  const se=document.getElementById(`s${cur}`);
+  if(isBest)se.className='seg sc';else if(isOk)se.className='seg sp';else se.className='seg sd';
+  const ab=document.getElementById('ab');
+  ab.disabled=false;
+  ab.textContent=cur<D.length-1?'Next segment →':'See results & reflection';
+}
+
+function nxtSeg(){
+  if(cur<D.length-1)loadSeg(cur+1);else showRes();
+}
+
+function showRes(){
+  document.getElementById('qcard').style.display='none';
+  document.getElementById('ss').style.display='block';
+  document.getElementById('rs').style.display='block';
+  const disp=score%1===0?score:score.toFixed(1);
+  document.getElementById('fsn').textContent=disp;
+  const pct=(score/D.length)*100;
+  document.getElementById('sm').textContent=pct>=83
+    ?'Excellent critical reading. You identified the primary technique in most segments. Review the nuanced feedback to deepen your analysis.'
+    :pct>=58
+    ?'Good work. You caught many of the key techniques. Look back at the segments you found trickier — the feedback explains where multiple interpretations are valid.'
+    :'Keep exploring. Rhetorical analysis takes practice. Review the feedback for each segment — the goal is not to memorize labels but to understand how claims, evidence, and emotion work together.';
+  upProg();
+}
+
+function upProg(){
+  const n=ans.filter(a=>a!==null).length;
+  document.getElementById('pf').style.width=(n/D.length*100)+'%';
+  document.getElementById('pl').textContent=`${n} / ${D.length}`;
+  const d=score%1===0?score:score.toFixed(1);
+  document.getElementById('sl').textContent=`Score: ${d}`;
+}
+
+renderMsg();renderRefl();loadSeg(0);
+</script>
