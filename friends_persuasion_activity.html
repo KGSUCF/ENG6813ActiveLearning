@@ -1,0 +1,423 @@
+
+<h2 class="sr-only">Interactive activity: identify persuasive techniques in a student-written message about the TV show Friends.</h2>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.gw{padding:1rem 0;font-size:14px}
+
+.sbar{display:flex;align-items:center;gap:10px;padding:.875rem 1rem;background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);margin-bottom:.875rem}
+.sdiv{width:.5px;height:36px;background:var(--color-border-tertiary);flex-shrink:0}
+.slbl{font-size:10px;color:var(--color-text-tertiary);text-transform:uppercase;letter-spacing:.08em;font-family:var(--font-mono);margin-bottom:2px}
+.sval{font-size:30px;font-weight:500;color:#534AB7;font-family:var(--font-serif);line-height:1;min-width:38px}
+.strk-n{font-size:22px;font-weight:500;font-family:var(--font-mono);color:var(--color-text-tertiary);transition:color .3s;min-width:28px}
+.strk-n.hot{color:#BA7517}
+.orbs{display:flex;gap:6px;flex-wrap:wrap;flex:1;justify-content:flex-end;align-items:center}
+.orb{width:16px;height:16px;border-radius:50%;background:var(--color-background-secondary);border:.5px solid var(--color-border-secondary);transition:all .35s;flex-shrink:0}
+.orb.oc{background:#534AB7;border-color:#534AB7;transform:scale(1.3)}
+.orb.ob{background:#3B6D11;border-color:#3B6D11}
+.orb.op{background:#BA7517;border-color:#BA7517}
+.orb.od{background:#378ADD;border-color:#378ADD}
+
+.mcard{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1rem 1.25rem;margin-bottom:.75rem}
+.mey{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);font-family:var(--font-mono);margin-bottom:.6rem}
+.mtxt{font-family:var(--font-serif);font-size:16px;line-height:1.85;color:var(--color-text-primary)}
+.mctx{font-size:12px;color:var(--color-text-tertiary);margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--color-border-tertiary)}
+
+.sg{display:inline;padding:1px 0;border-radius:2px;transition:background .25s}
+.sgb{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;font-size:8px;font-family:var(--font-mono);background:#D3D1C7;color:#444441;vertical-align:middle;margin:0 1px;transition:all .25s;flex-shrink:0}
+.sg.sa{background:#EDE7F6}.sg.sa .sgb{background:#534AB7;color:#EEEDFE}
+.sg.sc{background:#EAF3DE}.sg.sc .sgb{background:#3B6D11;color:#EAF3DE}
+.sg.sp{background:#FAF0DA}.sg.sp .sgb{background:#BA7517;color:#FAEEDA}
+.sg.sd{background:#E6F1FB}.sg.sd .sgb{background:#185FA5;color:#E6F1FB}
+
+.leg{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.875rem}
+.lp{font-size:11px;font-family:var(--font-mono);padding:3px 9px;border-radius:20px;border:.5px solid var(--color-border-tertiary);color:var(--color-text-tertiary);background:var(--color-background-secondary)}
+
+.qcard{background:var(--color-background-primary);border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-lg);padding:1.25rem;position:relative;overflow:hidden;margin-bottom:1rem}
+.qcard-inner{animation:slideIn .22s ease}
+.lvlh{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem}
+.lvln{font-size:11px;font-family:var(--font-mono);letter-spacing:.08em;color:var(--color-text-tertiary);text-transform:uppercase}
+.ttag{font-size:10px;font-family:var(--font-mono);padding:3px 10px;border-radius:20px;background:#EEEDFE;color:#534AB7;border:.5px solid #AFA9EC;display:none;letter-spacing:.04em}
+
+.qq{font-family:var(--font-serif);font-size:16px;font-style:italic;border-left:2px solid #534AB7;border-radius:0;padding:.75rem 1rem;background:var(--color-background-secondary);margin-bottom:1rem;color:var(--color-text-primary);line-height:1.75}
+
+.og{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:1rem}
+.ob{display:flex;align-items:center;gap:9px;padding:.8rem .875rem;border:.5px solid var(--color-border-secondary);border-radius:var(--border-radius-md);background:var(--color-background-primary);cursor:pointer;font-size:13px;color:var(--color-text-secondary);text-align:left;transition:transform .1s,background .12s,border-color .12s,color .12s;line-height:1.4;width:100%;min-height:54px}
+.ob:hover:not(:disabled){border-color:#7B5BB5;background:#EEEDFE;color:#3C3489;transform:translateY(-2px)}
+.ob:active:not(:disabled){transform:scale(.97)}
+.ob.osel{border-color:#534AB7;background:#EEEDFE;color:#3C3489;font-weight:500;border-width:1px}
+.ob.obest{border-color:#3B6D11;background:#EAF3DE;color:#27500A;font-weight:500;border-width:1px}
+.ob.ook{border-color:#BA7517;background:#FAF0DA;color:#633806}
+.ob.omiss{opacity:.3}
+.od{width:17px;height:17px;border-radius:50%;border:1.5px solid currentColor;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;transition:all .15s}
+
+.fbp{border-radius:0;padding:.875rem 1rem;margin-bottom:1rem;display:none;animation:fadeDown .22s ease}
+.fbp.vis{display:block}
+.fbp.fbc{background:#EAF3DE;border-left:2px solid #3B6D11}
+.fbp.fbp2{background:#FAF0DA;border-left:2px solid #BA7517}
+.fbp.fbi{background:#E6F1FB;border-left:2px solid #185FA5}
+.fb-t{font-weight:500;margin-bottom:.35rem;font-size:13px;color:var(--color-text-primary)}
+.fb-b{font-size:13px;line-height:1.7;color:var(--color-text-primary)}
+.fb-n{margin-top:.6rem;padding-top:.6rem;border-top:.5px solid var(--color-border-tertiary);font-size:12px;color:var(--color-text-secondary)}
+
+.arow{display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+.pr{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.pill{font-size:11px;padding:2px 8px;border-radius:20px;font-family:var(--font-mono)}
+.pb{background:#EAF3DE;color:#27500A;border:.5px solid #639922}
+.po{background:#FAF0DA;color:#633806;border:.5px solid #BA7517}
+
+.spop{position:absolute;font-size:22px;font-weight:500;color:#534AB7;pointer-events:none;font-family:var(--font-mono);animation:popUp .85s ease forwards;z-index:10;right:1.25rem}
+@keyframes popUp{0%{transform:translateY(0);opacity:1}60%{opacity:1}100%{transform:translateY(-56px);opacity:0}}
+@keyframes fadeDown{from{transform:translateY(-8px);opacity:0}to{transform:translateY(0);opacity:1}}
+@keyframes slideIn{from{transform:translateX(14px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes streakPop{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+.ecard{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.5rem 1.25rem;margin-bottom:1rem;display:none;text-align:center}
+.escore-wrap{margin:.5rem 0 .25rem}
+.escore{font-size:68px;font-weight:500;color:#534AB7;font-family:var(--font-serif);line-height:1}
+.esub{font-size:14px;color:var(--color-text-tertiary);margin-bottom:.5rem}
+.etier{display:inline-block;font-size:11px;font-family:var(--font-mono);padding:4px 14px;border-radius:20px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.25rem}
+.te{background:#EAF3DE;color:#27500A;border:.5px solid #639922}
+.ts{background:#E6F1FB;color:#0C447C;border:.5px solid #185FA5}
+.td{background:var(--color-background-secondary);color:var(--color-text-secondary);border:.5px solid var(--color-border-secondary)}
+.eorbs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:1rem 0}
+.eorb{width:18px;height:18px;border-radius:50%;background:var(--color-background-secondary);border:.5px solid var(--color-border-secondary)}
+.eorb.eb{background:#3B6D11;border-color:#3B6D11}
+.eorb.eo{background:#BA7517;border-color:#BA7517}
+.eorb.em{background:#378ADD;border-color:#378ADD}
+.estat{display:flex;justify-content:center;gap:1.5rem;margin-top:1rem;flex-wrap:wrap}
+.estat-item{text-align:center}
+.estat-v{font-size:24px;font-weight:500;color:var(--color-text-primary);font-family:var(--font-mono)}
+.estat-l{font-size:11px;color:var(--color-text-tertiary);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.06em}
+
+.rcard{background:var(--color-background-primary);border:.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;display:none}
+.rq{margin-bottom:1.25rem}
+.rq label{display:block;font-size:13px;color:var(--color-text-primary);margin-bottom:.4rem;line-height:1.6}
+.rqn{font-family:var(--font-mono);font-size:11px;color:#534AB7}
+.rq textarea{width:100%;min-height:72px;resize:vertical;font-size:13px;line-height:1.55}
+.rq textarea:focus{outline:none;box-shadow:0 0 0 2px #EEEDFE}
+
+@media(max-width:520px){.og{grid-template-columns:1fr}.orbs{justify-content:flex-start}.sbar{gap:8px}}
+</style>
+
+<div class="gw">
+
+<div class="sbar">
+  <div>
+    <div class="slbl">Score</div>
+    <div class="sval" id="sv">0</div>
+  </div>
+  <div class="sdiv"></div>
+  <div>
+    <div class="slbl">Streak</div>
+    <div class="strk-n" id="strk">—</div>
+  </div>
+  <div class="sdiv"></div>
+  <div class="orbs" id="orbs"></div>
+</div>
+
+<div class="mcard">
+  <div class="mey">Persuasive message — written by the student</div>
+  <div class="mtxt" id="mt"></div>
+  <div class="mctx">Audience: people who haven't seen the show · Goal: make them want to watch it</div>
+</div>
+
+<div class="leg">
+  <span class="lp" style="background:#EAF3DE;color:#27500A;border-color:#639922">✓ Best answer</span>
+  <span class="lp" style="background:#FAF0DA;color:#633806;border-color:#BA7517">~ Also reasonable</span>
+  <span class="lp" style="background:#E6F1FB;color:#0C447C;border-color:#378ADD">Answered</span>
+  <span class="lp" style="background:#EDE7F6;color:#534AB7;border-color:#AFA9EC">Active</span>
+</div>
+
+<div class="qcard" id="qc">
+  <div class="qcard-inner" id="qci">
+    <div class="lvlh">
+      <div class="lvln" id="lvln">Part 1 of 3</div>
+      <div class="ttag" id="ttag"></div>
+    </div>
+    <div class="qq" id="qq"></div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:.75rem">What best describes what this part is doing? Select one, then check your thinking.</p>
+    <div class="og" id="og"></div>
+    <div class="fbp" id="fbp">
+      <div class="fb-t" id="ft"></div>
+      <div class="fb-b" id="fb2"></div>
+      <div class="fb-n" id="fn"></div>
+    </div>
+    <div class="arow">
+      <div class="pr" id="pr" style="display:none"></div>
+      <button id="ab" onclick="ha()" disabled style="margin-left:auto">Check answer</button>
+    </div>
+  </div>
+</div>
+
+<div class="ecard" id="ec"></div>
+<div class="rcard" id="rc"></div>
+
+</div>
+
+<script>
+const D=[
+  {
+    t:"Friends is wholesome",
+    b:["Loaded language"],
+    ok:["Reasonable claim","Audience targeting"],
+    o:["Reasonable claim","Loaded language","Audience targeting","Unsupported claim","Appeal to authority","False dilemma"],
+    lbl:"Loaded language",
+    fb:`"Wholesome" is a value-laden word — it does persuasive work through connotation, not argument. That's why <em>loaded language</em> is the strongest read: the word frames the show as safe and morally agreeable before any actual case is made.<br><br><em>Reasonable claim</em> is also defensible — Friends is widely considered a family-friendly, low-controversy sitcom, so "wholesome" isn't inaccurate, just persuasively framed. <em>Audience targeting</em> fits too: "wholesome" is a word chosen with this audience in mind — it signals "this won't make you uncomfortable," which speaks directly to someone unfamiliar with the show and possibly cautious about new content.`,
+    n:`Loaded language doesn't require dishonesty. A true claim can still be delivered with a word chosen for its emotional pull rather than its precision.`
+  },
+  {
+    t:"and funny",
+    b:["Reasonable claim"],
+    ok:["Fair persuasive appeal"],
+    o:["Reasonable claim","Fair persuasive appeal","Overgeneralization","Loaded language","Appeal to fear or regret","Unsupported claim"],
+    lbl:"Reasonable claim",
+    fb:`Calling the show funny is a modest, widely shared assessment — Friends is a classic sitcom and "funny" is hard to seriously dispute. That modesty is why <em>reasonable claim</em> is the best fit.<br><br><em>Fair persuasive appeal</em> also works here: pointing out something genuinely enjoyable to build interest is a fair way to persuade. The distinction is subtle — a reasonable claim states something defensible, while a fair persuasive appeal uses something defensible to make the audience interested. Both readings hold for this phrase.`,
+    n:`Not every persuasive sentence is doing something tricky. Spotting a fair, modest claim is just as important a skill as spotting a fallacy.`
+  },
+  {
+    t:"and it will help you to understand modern relationships",
+    b:["Unsupported claim","Overgeneralization"],
+    ok:["Missing context","Audience targeting"],
+    o:["Unsupported claim","Overgeneralization","Missing context","Audience targeting","Appeal to authority","False dilemma"],
+    lbl:"Unsupported claim + overgeneralization",
+    fb:`This is where the message overreaches. Claiming the show <strong>"will help you understand modern relationships"</strong> treats an uncertain outcome as a sure thing with nothing to back it up — that's an <em>unsupported claim</em>. It's also an <em>overgeneralization</em>: one TV show standing in for an entire, complex social topic.<br><br><em>Missing context</em> is a strong reading too — Friends originally aired in the 1990s and early 2000s, and a lot about relationships, dating, and communication has changed since then; the message doesn't acknowledge that gap. <em>Audience targeting</em> also fits: this line speaks to the audience's possible distance from "modern" culture, appealing to a wish to feel current or understood.`,
+    n:`When a claim jumps from something narrow (a sitcom) to something broad (understanding relationships in general), notice the size of that leap. The bigger the leap, the more evidence it needs.`
+  }
+];
+
+const RQ=[
+  {n:"01",q:"What does this message want someone who hasn't seen Friends to believe, feel, or do?"},
+  {n:"02",q:"Which part(s) of the message are reasonable or fair appeals? What makes them fair rather than manipulative?"},
+  {n:"03",q:"Which part(s) make claims that would need more evidence to be fully convincing?"},
+  {n:"04",q:"Which part(s) use loaded language, overgeneralization, or assumptions that go beyond what's actually shown?"},
+  {n:"05",q:"What context — about the show, or about how relationships have changed — is left out of this message?"},
+  {n:"06",q:"Is this message persuasive, manipulative, merely overstated, or some combination? Point to specific words to support your answer."},
+  {n:"07",q:"How did this activity change the way you read short persuasive messages, like recommendations or ads?"}
+];
+
+let cur=0,sel=null,done=false,score=0,prevScore=0,streak=0,maxStreak=0;
+const ans=new Array(D.length).fill(null);
+
+function init(){
+  buildMsg();buildOrbs();buildRefl();loadSeg(0);
+}
+
+function buildMsg(){
+  document.getElementById('mt').innerHTML=D.map((s,i)=>
+    `<span class="sg" id="sg${i}">${s.t}<span class="sgb">${i+1}</span></span> `
+  ).join('');
+}
+
+function buildOrbs(){
+  document.getElementById('orbs').innerHTML=D.map((_,i)=>
+    `<div class="orb" id="o${i}" title="Part ${i+1}"></div>`
+  ).join('');
+}
+
+function buildRefl(){
+  const rc=document.getElementById('rc');
+  rc.innerHTML=`
+    <div style="margin-bottom:1rem">
+      <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);font-family:var(--font-mono);margin-bottom:.4rem">After the analysis</div>
+      <h3 style="font-size:16px;font-weight:500;color:var(--color-text-primary);margin-bottom:.35rem">Reflection questions</h3>
+      <p style="font-size:13px;color:var(--color-text-secondary);line-height:1.65">Use these for written responses or class discussion. There are no single correct answers — the goal is to support your thinking with specific examples from the message.</p>
+    </div>
+    ${RQ.map(q=>`<div class="rq"><label><span class="rqn">${q.n} —</span> ${q.q}</label><textarea placeholder="Write your response here..."></textarea></div>`).join('')}
+  `;
+}
+
+function updateOrbs(){
+  D.forEach((_,i)=>{
+    const o=document.getElementById(`o${i}`);
+    o.className='orb';
+    if(i===cur&&!ans[i])o.classList.add('oc');
+    else if(ans[i]){
+      if(D[i].b.includes(ans[i]))o.classList.add('ob');
+      else if(D[i].ok.includes(ans[i]))o.classList.add('op');
+      else o.classList.add('od');
+    }
+  });
+}
+
+function updateMsg(){
+  D.forEach((_,i)=>{
+    const el=document.getElementById(`sg${i}`);
+    el.className='sg';
+    if(i===cur&&!ans[i])el.classList.add('sa');
+    else if(ans[i]){
+      if(D[i].b.includes(ans[i]))el.classList.add('sc');
+      else if(D[i].ok.includes(ans[i]))el.classList.add('sp');
+      else el.classList.add('sd');
+    }
+  });
+}
+
+function loadSeg(i){
+  cur=i;sel=null;done=false;
+  const s=D[i];
+  document.getElementById('lvln').textContent=`Part ${i+1} of ${D.length}`;
+  document.getElementById('qq').textContent=`"${s.t}"`;
+  document.getElementById('ttag').style.display='none';
+  document.getElementById('ttag').textContent='';
+
+  const og=document.getElementById('og');
+  og.innerHTML='';
+  s.o.forEach(opt=>{
+    const b=document.createElement('button');
+    b.className='ob';
+    b.innerHTML=`<span class="od"></span>${opt}`;
+    b.onclick=()=>pick(opt,b);
+    og.appendChild(b);
+  });
+
+  const fbp=document.getElementById('fbp');
+  fbp.className='fbp';
+  ['ft','fb2','fn'].forEach(id=>document.getElementById(id).innerHTML='');
+  document.getElementById('pr').style.display='none';
+  document.getElementById('pr').innerHTML='';
+
+  const ab=document.getElementById('ab');
+  ab.textContent='Check answer';ab.disabled=true;
+
+  const qci=document.getElementById('qci');
+  qci.style.animation='none';
+  void qci.offsetWidth;
+  qci.style.animation='slideIn .22s ease';
+
+  updateOrbs();updateMsg();
+}
+
+function pick(v,btn){
+  if(done)return;
+  sel=v;
+  document.querySelectorAll('.ob').forEach(b=>b.classList.remove('osel'));
+  btn.classList.add('osel');
+  document.getElementById('ab').disabled=false;
+}
+
+function ha(){if(!done)chkAns();else nxt();}
+
+function chkAns(){
+  if(!sel)return;
+  done=true;ans[cur]=sel;
+  const s=D[cur];
+  const isBest=s.b.includes(sel),isOk=s.ok.includes(sel);
+  prevScore=score;
+  if(isBest){score+=1;streak++;if(streak>maxStreak)maxStreak=streak;}
+  else if(isOk){score+=.5;streak=0;}
+  else{streak=0;}
+
+  upScore();upStreak();updateOrbs();updateMsg();
+
+  document.querySelectorAll('.ob').forEach(b=>{
+    const lbl=b.textContent.trim();
+    b.disabled=true;
+    if(s.b.includes(lbl)){b.className='ob obest';b.querySelector('.od').textContent='✓';}
+    else if(s.ok.includes(lbl)){b.className='ob ook';b.querySelector('.od').textContent='~';}
+    else if(lbl===sel&&!isBest&&!isOk)b.className='ob omiss';
+  });
+
+  const fbp=document.getElementById('fbp');
+  const type=isBest?'fbc':isOk?'fbp2':'fbi';
+  const title=isBest?'Spot on.':isOk?'That\'s defensible — here\'s the nuance:':`You chose "${sel}" — here's what's happening:`;
+  fbp.className=`fbp vis ${type}`;
+  document.getElementById('ft').textContent=title;
+  document.getElementById('fb2').innerHTML=s.fb;
+  document.getElementById('fn').textContent=s.n;
+
+  const ttag=document.getElementById('ttag');
+  ttag.textContent=s.lbl;ttag.style.display='inline-block';
+
+  const pr=document.getElementById('pr');
+  pr.style.display='flex';
+  let ph='<span style="font-size:11px;color:var(--color-text-tertiary)">Best: </span>';
+  s.b.forEach(a=>ph+=`<span class="pill pb">${a}</span>`);
+  if(s.ok.length){ph+='<span style="font-size:11px;color:var(--color-text-tertiary);margin-left:6px">Also ok: </span>';s.ok.forEach(a=>ph+=`<span class="pill po">${a}</span>`);}
+  pr.innerHTML=ph;
+
+  if(isBest||isOk){
+    const pop=document.createElement('div');
+    pop.className='spop';
+    pop.textContent=isBest?'+1':'+0.5';
+    pop.style.bottom='3.5rem';
+    document.getElementById('qc').appendChild(pop);
+    setTimeout(()=>pop.remove(),900);
+  }
+
+  const ab=document.getElementById('ab');
+  ab.disabled=false;
+  ab.textContent=cur<D.length-1?'Next part →':'See results';
+}
+
+function nxt(){
+  if(cur<D.length-1)loadSeg(cur+1);else showEnd();
+}
+
+function upScore(){
+  const el=document.getElementById('sv');
+  const from=prevScore,to=score,dur=450;
+  const start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const e=t<.5?2*t*t:-1+(4-2*t)*t;
+    const v=from+((to-from)*e);
+    el.textContent=v%1===0?Math.round(v).toString():v.toFixed(1);
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function upStreak(){
+  const el=document.getElementById('strk');
+  if(streak===0){el.textContent='—';el.classList.remove('hot');}
+  else{
+    el.textContent=streak+'✓';
+    el.classList.toggle('hot',streak>=2);
+    if(streak>=2){
+      el.style.animation='none';void el.offsetWidth;
+      el.style.animation='streakPop .35s ease';
+    }
+  }
+}
+
+function showEnd(){
+  document.getElementById('qc').style.display='none';
+  const pct=(score/D.length)*100;
+  const tier=pct>=83?['Expert','te']:pct>=58?['Skilled','ts']:['Developing','td'];
+  const orbHtml=ans.map((a,i)=>{
+    let cls='eorb';
+    if(D[i].b.includes(a))cls+=' eb';
+    else if(D[i].ok.includes(a))cls+=' eo';
+    else if(a)cls+=' em';
+    return `<div class="${cls}" title="Part ${i+1}"></div>`;
+  }).join('');
+  document.getElementById('ec').innerHTML=`
+    <div style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--color-text-tertiary);font-family:var(--font-mono);margin-bottom:.5rem">Analysis complete</div>
+    <div class="escore-wrap"><div class="escore" id="escoreN">0</div></div>
+    <div class="esub">out of ${D.length} points</div>
+    <div class="etier ${tier[1]}">${tier[0]}</div>
+    <div class="eorbs">${orbHtml}</div>
+    <div class="estat">
+      <div class="estat-item"><div class="estat-v">${ans.filter((_,i)=>D[i].b.includes(ans[i])).length}</div><div class="estat-l">Best matches</div></div>
+      <div class="estat-item"><div class="estat-v">${ans.filter((_,i)=>D[i].ok.includes(ans[i])).length}</div><div class="estat-l">Also-ok answers</div></div>
+      <div class="estat-item"><div class="estat-v">${maxStreak}</div><div class="estat-l">Best streak</div></div>
+    </div>
+    <p style="font-size:13px;color:var(--color-text-secondary);margin-top:1.25rem;line-height:1.65">${pct>=83?'Strong critical reading of a very short message — proof that persuasion analysis isn\'t just about long texts. Take the reflection questions below as your next step.':pct>=58?'Good work. Look back at the part you found trickiest — the feedback explains where more than one interpretation is defensible.':'Short messages can be deceptively dense. Review the feedback for each part — the goal isn\'t to memorize labels, but to notice how a few words can carry a lot of persuasive weight.'}</p>
+  `;
+  document.getElementById('ec').style.display='block';
+  document.getElementById('rc').style.display='block';
+
+  const escoreEl=document.getElementById('escoreN');
+  const dur=700,start=performance.now();
+  function step(now){
+    const t=Math.min((now-start)/dur,1);
+    const e=t<.5?2*t*t:-1+(4-2*t)*t;
+    const v=score*e;
+    escoreEl.textContent=v%1===0?Math.round(v).toString():v.toFixed(1);
+    if(t<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+init();
+</script>
